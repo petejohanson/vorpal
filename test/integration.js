@@ -45,21 +45,12 @@ describe('integration tests:', function () {
           .action(function (args, cb) {
             cb(undefined, item);
           });
-        vorpal
-          .command('overwrite me')
-          .action(function (args, cb) {
-            cb(undefined, item);
-          });
       });
 
       vorpal.exec('overwritten', function (err, data) {
         (err === undefined).should.be.true;
         data.should.equal('c');
-        vorpal.exec('overwrite me', function (err, data) {
-          (err === undefined).should.be.true;
-          data.should.equal('c');
-          done();
-        });
+        done();
       });
     });
 
@@ -531,7 +522,7 @@ describe('integration tests:', function () {
 
       it.skip('should show subcommand help on invalid subcommand', function (done) {
         exec('very complicated', done, function () {
-          stdout().should.containEql('very complicated deep *');
+          stdout().should.containEql('very complicated deep');
           done();
         });
       });
@@ -657,7 +648,7 @@ describe('integration tests:', function () {
               }
             }, 1000);
             var p = new BlueBirdPromise(function () {});
-            p.cancellable();
+            p.cancel();
             return p;
           });
       });

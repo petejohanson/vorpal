@@ -170,7 +170,7 @@ module.exports = function (vorpal) {
     .description('Negative args.')
     .option('--dry-run', 'Perform dry run only.')
     .action(function (args, cb) {
-        this.log(args.options['dry-run']);
+        this.log(args.options['dryRun']);
         cb();
     });
 
